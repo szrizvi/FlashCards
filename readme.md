@@ -8,9 +8,8 @@ All Required elements of Lab 2 done
 
 ### App Walk-though
 
-<img src="https://i.imgur.com/q0zwaBW.gif" width=200><br>
+<img src="https://i.imgur.com/66u2AF3.gif" width=200><br>
 
-`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
 
 ## Required
 - [x] User can open the creation screen
