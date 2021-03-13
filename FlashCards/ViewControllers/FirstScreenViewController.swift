@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FirstScreenViewController: UIViewController {
 
     @IBOutlet weak var FrontLabel: UILabel!
     @IBOutlet weak var BackLabel: UILabel!
@@ -16,6 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var OptionTwo: UIButton!
     @IBOutlet weak var OptionThree: UIButton!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationController = segue.destination as! UINavigationController
+        let creationController = navigationController.topViewController as! SecondScreenViewController
+        creationController.FlashcardsController = self
+    }
     
         
     override func viewDidLoad() {
@@ -50,9 +55,24 @@ class ViewController: UIViewController {
     }
     @IBAction func didTapOnTwo(_ sender: Any) {
         FrontLabel.isHidden = true
+        
     }
     @IBAction func didTapOnThree(_ sender: Any) {
         OptionThree.isHidden = true
     }
+    @IBAction func didTapOnAnswer(_ sender: Any) {
+        FrontLabel.isHidden = false
+    }
     
+    @IBAction func didTapOnQuestion(_ sender: Any) {
+        FrontLabel.isHidden = true
+    }
+    func updateFlashcard(question: String, answer1: String, answer2: String, answer3: String) {
+        FrontLabel.text = question
+        BackLabel.text = answer2
+        OptionOne.setTitle(answer1, for: .normal)
+        OptionTwo.setTitle(answer2, for: .normal)
+        OptionThree.setTitle(answer3, for: .normal)
+    
+    }
 }
