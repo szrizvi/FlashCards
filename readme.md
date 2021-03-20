@@ -8,7 +8,7 @@ Required elements of Lab 3 completed
 
 ### App Walk-though
 
-<img src="https://i.imgur.com/skGYIZr.gif" width=200><br>
+<img src="https://i.imgur.com/leGghjm.gif" width=200><br>
 
 
 ## Required
