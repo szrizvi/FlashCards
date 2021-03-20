@@ -91,6 +91,34 @@
                                     <segue destination="teH-iz-xqH" kind="presentation" modalPresentationStyle="fullScreen" id="P2j-af-ifI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZl-gz-nbC">
+                                <rect key="frame" x="310" y="800" width="45" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" systemColor="systemYellowColor"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="1" green="0.98266787284437984" blue="0.62866424775565855" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="52T-dA-tJg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjf-WX-Zjd">
+                                <rect key="frame" x="63" y="802" width="39" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="Prev">
+                                    <color key="titleColor" systemColor="systemYellowColor"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="1" green="0.98266787280000001" blue="0.62866424779999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnPrev:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uHM-gf-af6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -103,6 +131,8 @@
                         <outlet property="OptionThree" destination="ClG-7X-1C7" id="qS9-rX-uMQ"/>
                         <outlet property="OptionTwo" destination="IvG-9s-F40" id="Vkx-d7-Fk1"/>
                         <outlet property="card" destination="AzF-IR-BKJ" id="jCa-U9-j8A"/>
+                        <outlet property="nextButton" destination="FZl-gz-nbC" id="iRc-dH-COE"/>
+                        <outlet property="prevButton" destination="pjf-WX-Zjd" id="psd-Ft-Ru6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
