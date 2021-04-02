@@ -9,7 +9,9 @@ import UIKit
 
 struct Flashcard {
     var question: String
-    var answer: String
+    var answer1: String
+    var answer2: String
+    var answer3: String
     
 }
 
@@ -74,33 +76,57 @@ class FirstScreenViewController: UIViewController {
         OptionOne.isHidden = true
     }
     @IBAction func didTapOnTwo(_ sender: Any) {
-        FrontLabel.isHidden = true
+        flipFlashcard()
         
     }
     @IBAction func didTapOnThree(_ sender: Any) {
         OptionThree.isHidden = true
     }
     @IBAction func didTapOnAnswer(_ sender: Any) {
+        if FrontLabel.isHidden == true {
         FrontLabel.isHidden = false
+    }
     }
     
     @IBAction func didTapOnQuestion(_ sender: Any) {
-        FrontLabel.isHidden = true
+        flipFlashcard()
     }
     
     @IBAction func didTapOnNext(_ sender: Any) {
         currentIndex = currentIndex + 1
-        updateLabels()
         updateNextPrevButtons()
+        animateCardIn()
     }
     @IBAction func didTapOnPrev(_ sender: Any) {
         currentIndex = currentIndex - 1
-        updateLabels()
+        animateCardOut()
         updateNextPrevButtons()
     }
     
+    func flipFlashcard(){
+        FrontLabel.isHidden = true
+        UIView.transition(with: card, duration: 0.3, options: UIView.AnimationOptions.transitionFlipFromRight, animations: {
+            self.FrontLabel.isHidden = true
+        })
+    }
+    
+    func animateCardOut(){
+        UIView.animate(withDuration: 0.3, animations: {
+            self.card.transform = CGAffineTransform.identity.translatedBy(x: -300, y: 0)}, completion: {finished in
+                self.updateLabels()
+                self.animateCardIn()
+            })
+    }
+    
+    func animateCardIn(){
+        card.transform = CGAffineTransform.identity.translatedBy(x: 300, y: 0)
+        UIView.animate(withDuration: 0.3) {
+            self.card.transform = CGAffineTransform.identity
+        }
+        updateLabels()
+            }
     func updateFlashcard(question: String, answer1: String, answer2: String, answer3: String) {
-        let flashcard = Flashcard(question: question, answer: answer2)
+        let flashcard = Flashcard(question: question, answer1: answer1, answer2: answer2, answer3: answer3)
         
         OptionOne.setTitle(answer1, for: .normal)
         OptionTwo.setTitle(answer2, for: .normal)
@@ -118,6 +144,7 @@ class FirstScreenViewController: UIViewController {
         updateLabels()
     
     }
+    
     func updateNextPrevButtons() {
         if currentIndex == flashcards.count - 1 {
             nextButton.isEnabled = false
@@ -137,26 +164,30 @@ class FirstScreenViewController: UIViewController {
     func updateLabels() {
         let currentFlashcard = flashcards[currentIndex]
         FrontLabel.text = currentFlashcard.question
-        BackLabel.text = currentFlashcard.answer
+        BackLabel.text = currentFlashcard.answer2
+        
+        OptionOne.setTitle(currentFlashcard.answer1, for: .normal)
+        OptionTwo.setTitle(currentFlashcard.answer2, for: .normal)
+        OptionThree.setTitle(currentFlashcard.answer3, for: .normal)
+        
+        
     }
 
     
         
     func saveAllFlashcardsToDisk() {
         
-        let dictionaryArray = flashcards.map { (card) -> [String: String] in return ["question": card.question, "answer": card.answer]
+        let dictionaryArray = flashcards.map { (card) -> [String: String] in return ["question": card.question, "answer": card.answer2]}
             
         UserDefaults.standard.set(flashcards, forKey: "flashcards")
         print("Flashcards saved to UserDefaults")
         
-        
-            
-        }
     }
+    
     func readSavedFlashcards() {
         if let dictionaryArray = UserDefaults.standard.array(forKey: "flashcards") as? [[String: String]]{
             let savedCards = dictionaryArray.map { dictionary -> Flashcard in
-                return Flashcard(question: dictionary["question"]!, answer: dictionary["answer"]!)
+                return Flashcard(question: dictionary["question"]!, answer1: dictionary["answer1"]!, answer2: dictionary["answer"]!, answer3: dictionary["answer3"]!)
             }
             flashcards.append(contentsOf: savedCards)
         }
